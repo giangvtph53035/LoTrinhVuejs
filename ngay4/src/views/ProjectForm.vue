@@ -19,8 +19,9 @@ export default {
     const updateProject = inject('updateProject');
     const isEdit = computed(() => !!props.id);
     const project = computed(() => {
-      if (!projects || !projects.value) return {};
-      return projects.value.find(p => p.id == props.id) || {};
+      const arr = projects.projects || projects.value || projects;
+      if (!arr || !Array.isArray(arr)) return {};
+      return arr.find(p => p.id == props.id) || {};
     });
     // Lấy router instance đúng chuẩn
     const internalInstance = getCurrentInstance();

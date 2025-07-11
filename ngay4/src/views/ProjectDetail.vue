@@ -19,7 +19,11 @@ export default {
   props: ['id'],
   setup(props) {
     const projects = inject('projects');
-    const project = computed(() => projects.value.find(p => p.id == props.id));
+    const project = computed(() => {
+      const arr = projects.projects || projects.value || projects;
+      if (!arr || !Array.isArray(arr)) return {};
+      return arr.find(p => p.id == props.id) || {};
+    });
     return { project };
   }
 }
