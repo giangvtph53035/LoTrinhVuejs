@@ -1,12 +1,12 @@
 <template>
   <div class="category-filter">
-    <!-- <label>Lọc theo danh mục: </label>
+    <label>Lọc theo danh mục: </label>
     <select v-model="selected">
       <option value="All">Tất cả</option>
       <option v-for="category in categories" :key="category" :value="category">
         {{ category }}
       </option>
-    </select> -->
+    </select>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
       type: Array,
       required: true,
     },
-    selectedCategory: {
+    modelValue: {
       type: String,
       required: true,
     },
@@ -26,10 +26,10 @@ export default {
   computed: {
     selected: {
       get() {
-        return this.selectedCategory;
+        return this.modelValue;
       },
       set(value) {
-        this.$emit('update:category', value);
+        this.$emit('update:modelValue', value);
       },
     },
   },
